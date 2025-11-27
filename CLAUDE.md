@@ -95,20 +95,98 @@ When adding a new mini app to the showcase:
    - `description`: Brief description of the technique demonstrated
    - `tags`: Array of relevant tags (e.g., `["css", "animation"]`)
 
-2. **Create a new component** in `src/` (e.g., `LiquidButton.tsx`)
+2. **Create a new folder** in `src/pages/` with a PascalCase name (e.g., `src/pages/LiquidButton/`)
 
-3. **Create a dedicated CSS file** for the app (e.g., `LiquidButton.css`)
+3. **Create the component file** inside the folder (e.g., `src/pages/LiquidButton/LiquidButton.tsx`)
 
-4. **Import the CSS only in that component**: `import './LiquidButton.css'`
+4. **Create a dedicated CSS file** in the same folder (e.g., `src/pages/LiquidButton/LiquidButton.css`)
 
-5. **Update App.tsx** to import and route to your new component
+5. **Structure your component** using the DemoBox wrapper:
+   ```tsx
+   import DemoBox from "@components/DemoBox";
+   import "@styles/app-common.css";
+   import "./YourApp.css";
+
+   const YourApp = () => {
+     return (
+       <div className="app-container">
+         <DemoBox
+           description="Brief description of what this demo does"
+           techniques={[
+             { label: "Technique description with ", code: "CSS property" },
+             { label: "Another technique" },
+           ]}
+           techStack={["css-property", "another-property"]}
+         >
+           {/* Your demo content goes here */}
+         </DemoBox>
+
+         {/* Optional: Variants section */}
+         <div className="variants-section">
+           <h3 className="variants-title">Variations</h3>
+           {/* Additional examples */}
+         </div>
+       </div>
+     );
+   };
+
+   export default YourApp;
+   ```
+
+6. **Update `App.tsx`** to import and route to your new component:
+   ```tsx
+   import YourApp from "./pages/YourApp/YourApp";
+
+   // Add route inside <Routes>
+   <Route
+     path="/your-app-path"
+     element={
+       <AppLayout apps={apps}>
+         <YourApp />
+       </AppLayout>
+     }
+   />
+   ```
+
+### DemoBox Component Props
+
+The `DemoBox` component accepts:
+- `title` (optional): Defaults to "Playground"
+- `badge` (optional): Defaults to "CSS Only"
+- `description`: Main description text
+- `techniques`: Array of technique objects with `label` and optional `code`
+- `techStack`: Array of technology/CSS property names
+- `children`: Your demo content (React components)
+
+### Required Imports
+
+Every app component should import:
+- `DemoBox` from `@components/DemoBox`
+- `@styles/app-common.css` for consistent styling
+- Its own CSS file (e.g., `./YourApp.css`)
+
+### Folder Structure Example
+
+```
+src/pages/
+├── LiquidButton/
+│   ├── LiquidButton.tsx
+│   └── LiquidButton.css
+├── GradientText/
+│   ├── GradientText.tsx
+│   └── GradientText.css
+└── YourNewApp/
+    ├── YourNewApp.tsx
+    └── YourNewApp.css
+```
 
 The app will automatically:
 - Appear on the landing page
 - Get wrapped with the AppLayout (header, footer, related apps)
 - Be accessible via its defined route
+- Use consistent styling from app-common.css
 
-Each mini app should be self-contained with its own styles to demonstrate specific CSS/JS techniques without interference from Tailwind or other app styles.
+Each mini app should be self-contained within its folder with its own styles to demonstrate specific CSS/JS techniques without interference from Tailwind or other app styles.
 
 ## Important Notes
 
