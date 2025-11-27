@@ -64,6 +64,12 @@ bun install
 
 **Entry Point**: `src/main.tsx` renders the root `App` component into `#root` element wrapped in StrictMode
 
+**Import Aliases**: Absolute imports are configured for cleaner imports:
+- `@/*` → `src/*` (e.g., `import App from '@/App'`)
+- `@components/*` → `src/components/*` (e.g., `import Header from '@components/Header'`)
+- `@styles/*` → `src/styles/*` (e.g., `import '@styles/global.css'`)
+- `@assets/*` → `src/assets/*` (e.g., `import logo from '@assets/logo.svg'`)
+
 **Linting**: ESLint 9 with flat config format using:
 - TypeScript ESLint recommended rules
 - React Hooks rules
