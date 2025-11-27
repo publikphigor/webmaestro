@@ -1,9 +1,9 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import LandingPage from "./LandingPage";
-import AppLayout from "./components/AppLayout";
-import LiquidButton from "./LiquidButton";
-import GradientText from "./GradientText";
-import CSS3DRotatingCube from "./CSS3DRotatingCube";
+import AppLayout from "@components/AppLayout";
+import LiquidButton from "./pages/LiquidButton/LiquidButton";
+import GradientText from "./pages/GradientText/GradientText";
+import CSS3DRotatingCube from "./pages/CSS3DRotatingCube/CSS3DRotatingCube";
 import { apps } from "./apps.config";
 
 const App = () => {
