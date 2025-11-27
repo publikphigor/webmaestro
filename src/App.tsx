@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import LandingPage from "./LandingPage";
 import AppLayout from "./components/AppLayout";
+import LiquidButton from "./LiquidButton";
 import { apps } from "./apps.config";
 
 const App = () => {
@@ -11,23 +12,14 @@ const App = () => {
         <Route path="/" element={<LandingPage />} />
 
         {/* Mini App Routes */}
-        {apps.map((app) => (
-          <Route
-            key={app.path}
-            path={app.path}
-            element={
-              <AppLayout apps={apps}>
-                <div className="max-w-6xl mx-auto px-6">
-                  <div className="bg-bg-raised border primary-border rounded-lg p-8 text-center">
-                    <p className="text-sm text-sub-text">
-                      App component for "{app.name}" coming soon...
-                    </p>
-                  </div>
-                </div>
-              </AppLayout>
-            }
-          />
-        ))}
+        <Route
+          path="/css-liquid-button"
+          element={
+            <AppLayout apps={apps}>
+              <LiquidButton />
+            </AppLayout>
+          }
+        />
 
         {/* 404 Page */}
         <Route

@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import { apps } from "./apps.config";
 
 const LandingPage = () => {
-
   return (
     <div className="min-h-screen bg-bg-main">
       {/* Navigation */}
@@ -166,11 +165,11 @@ const LandingPage = () => {
                 <Link
                   key={index}
                   to={app.path}
-                  className="group bg-bg-raised border primary-border hover:border-gray-700 rounded-lg p-6 transition-all hover:translate-x-1"
+                  className="group bg-bg-raised border primary-border hover:border-stroke-hover rounded-lg p-4 transition-all hover:translate-x-1"
                 >
                   <div className="flex items-start justify-between gap-4">
                     <div className="flex-1">
-                      <div className="flex items-center gap-3 mb-2">
+                      <div className="flex flex-col lg:flex-row lg:items-center gap-3 mb-2">
                         <h3 className="text-base font-semibold text-white group-hover:text-primary transition-colors">
                           {app.name}
                         </h3>
