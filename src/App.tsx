@@ -14,7 +14,7 @@ const App = () => {
   return (
     <div className="min-h-screen bg-bg-main">
       {/* Navigation */}
-      <nav className="border-b primary-border">
+      <nav>
         <div className="max-w-6xl mx-auto px-6 py-5">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
@@ -45,7 +45,7 @@ const App = () => {
       {/* Hero Section */}
       <section className="relative overflow-hidden">
         <div className="max-w-6xl mx-auto px-6 py-24">
-          <div className="max-w-3xl">
+          <div className="max-w-3xl mx-auto text-center">
             <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-bg-raised border border-gray-800 rounded-full mb-8">
               <span className="w-1.5 h-1.5 bg-primary rounded-full animate-pulse"></span>
               <span className="text-xs">Exploring the unexplored</span>
@@ -57,13 +57,14 @@ const App = () => {
               <span className="text-primary">Tricks & Techniques</span>
             </h1>
 
-            <p className="text-base mb-8 leading-relaxed max-w-xl">
-              A curated collection of mini applications showcasing powerful but
-              lesser-known CSS and JavaScript techniques. Each app demonstrates
-              a unique approach to solving common web development challenges.
+            <p className="text-base mb-8 leading-relaxed max-w-xl mx-auto">
+              A showcase of creative and eye-opening CSS and JavaScript mini
+              apps designed to inspire and impress. Explore lesser-known
+              techniques, inventive patterns, and clever solutions that
+              highlight just how amazing the modern web can be.
             </p>
 
-            <div className="flex items-center gap-4">
+            <div className="flex items-center justify-center gap-4">
               <a
                 href="#apps"
                 className="inline-flex items-center gap-2 px-5 py-2.5 bg-primary text-bg-raised font-semibold text-sm rounded-md hover:bg-[#c5e078] transition-colors"
@@ -103,7 +104,7 @@ const App = () => {
       </section>
 
       {/* Stats Bar */}
-      <section className="border-y primary-border bg-bg-raised/30">
+      <section className="bg-bg-raised/30">
         <div className="max-w-6xl mx-auto px-6 py-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div>
@@ -222,7 +223,7 @@ const App = () => {
       </section>
 
       {/* About Section */}
-      <section id="about" className="py-20 border-t primary-border">
+      <section id="about" className="py-20">
         <div className="max-w-6xl mx-auto px-6">
           <div className="grid md:grid-cols-2 gap-12">
             <div>
