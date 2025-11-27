@@ -29,4 +29,11 @@ export const apps: App[] = [
       "Perspective-perfect 3D cube with six uniquely styled faces that continuously rotates. Hover to pause and inspect each face in detail",
     tags: ["css", "3d", "animation", "perspective"],
   },
+  {
+    name: "Peel Off Corner Effect",
+    path: "/css-peel-off-corner",
+    description:
+      "Realistic paper-lifting corner effect perfect for tooltips and news cards using conic-gradient, clip-path animations, and dynamic shadows",
+    tags: ["css", "animation", "3d", "clip-path"],
+  },
 ];

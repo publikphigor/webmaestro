@@ -4,6 +4,7 @@ import AppLayout from "@components/AppLayout";
 import LiquidButton from "./pages/LiquidButton/LiquidButton";
 import GradientText from "./pages/GradientText/GradientText";
 import CSS3DRotatingCube from "./pages/CSS3DRotatingCube/CSS3DRotatingCube";
+import PeelOffCorner from "./pages/PeelOffCorner/PeelOffCorner";
 import { apps } from "./apps.config";
 
 const App = () => {
@@ -37,6 +38,15 @@ const App = () => {
           element={
             <AppLayout apps={apps}>
               <CSS3DRotatingCube />
+            </AppLayout>
+          }
+        />
+
+        <Route
+          path="/css-peel-off-corner"
+          element={
+            <AppLayout apps={apps}>
+              <PeelOffCorner />
             </AppLayout>
           }
         />

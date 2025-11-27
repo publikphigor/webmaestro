@@ -1,0 +1,352 @@
+/* Peel Off Corner Effect - Technical Implementation */
+
+/* Main Demo Wrapper - Centered container for the effect */
+.peel-demo-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 450px;
+  padding: 2rem;
+}
+
+/* Base Card - Centered, ~280px square */
+.card {
+  position: relative;
+  width: 280px;
+  height: 280px;
+  background: linear-gradient(135deg, #2d2d44 0%, #1f1f2e 100%);
+  border-radius: 16px;
+  padding: 32px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+  overflow: hidden;
+  cursor: pointer;
+  transition: box-shadow 0.45s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.card:hover {
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.8);
+}
+
+/* Layer B: Under-corner accent layer (reveals on hover) */
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at 100% 0%,
+    rgba(212, 252, 121, 0.25) 0%,
+    rgba(150, 230, 161, 0.15) 30%,
+    transparent 60%
+  );
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.45s cubic-bezier(0.19, 1, 0.22, 1);
+  z-index: 1;
+}
+
+.card:hover::before {
+  opacity: 1;
+}
+
+/* Card Content - Above all effects */
+.card-content {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.card-heading {
+  font-size: 28px;
+  font-weight: 700;
+  color: #f8fafc;
+  margin: 0;
+  letter-spacing: -0.5px;
+  line-height: 1.2;
+}
+
+.card-description {
+  font-size: 15px;
+  color: #cbd5e1;
+  line-height: 1.6;
+  margin: 0;
+  font-weight: 400;
+}
+
+/* Layer C: The Corner Peel Element */
+.corner-peel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 80px;
+  height: 80px;
+  z-index: 3;
+  transform-origin: 0% 100%;
+  pointer-events: none;
+
+  /* Conic gradient for realistic paper shading */
+  background: conic-gradient(
+    from 0deg at 100% 0%,
+    #d4fc79 0deg,
+    #e8f5b8 45deg,
+    #f0f9d0 90deg,
+    #d8f2aa 135deg,
+    #c8e89f 180deg,
+    #96e6a1 225deg,
+    #a0e8a8 270deg,
+    #b8f0b8 315deg,
+    #d4fc79 360deg
+  );
+
+  /* Initial clip-path: right-angle triangle lying flat */
+  clip-path: polygon(
+    100% 0%,
+    /* top-right point */ 0% 0%,
+    /* top-left point */ 0% 0%,
+    /* duplicate for smooth animation */ 100% 100% /* bottom-right point */
+  );
+
+  /* Smooth animation for all properties */
+  transition: clip-path 0.45s cubic-bezier(0.19, 1, 0.22, 1),
+    transform 0.45s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+/* Corner hover: lift up with rotation */
+.card:hover .corner-peel {
+  transform: translate(-10px, 10px) rotateZ(-12deg);
+
+  /* Morphed clip-path: curved paper illusion */
+  clip-path: polygon(100% 0%, 40% 10%, 10% 60%, 100% 100%);
+}
+
+/* Shadow Under the Corner - stretches realistically */
+.corner-peel::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse at 0% 100%,
+    rgba(0, 0, 0, 0.7) 0%,
+    rgba(0, 0, 0, 0.4) 30%,
+    transparent 60%
+  );
+  opacity: 0;
+  transform-origin: 0% 100%;
+  transition: opacity 0.45s cubic-bezier(0.19, 1, 0.22, 1),
+    transform 0.45s cubic-bezier(0.19, 1, 0.22, 1);
+  z-index: -1;
+}
+
+/* Shadow appears and stretches on hover */
+.card:hover .corner-peel::after {
+  opacity: 1;
+  transform: translate(-8px, 12px) scale(1.15);
+}
+
+/* Variants Section */
+.variants-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2rem;
+  margin-top: 1.5rem;
+}
+
+.variant-box {
+  width: 100%;
+  height: 280px;
+  padding: 15px;
+}
+
+.variant-box .card {
+  width: 100%;
+  height: 100%;
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.variant-box .card-content {
+  text-align: center;
+  height: auto;
+  gap: 8px;
+}
+
+.variant-label {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #f8fafc;
+  margin: 0;
+}
+
+.variant-text {
+  font-size: 0.875rem;
+  color: #cbd5e1;
+  margin: 0;
+}
+
+/* Subtle Variant - Gentle peel */
+.card-subtle .corner-peel {
+  background: conic-gradient(
+    from 0deg at 100% 0%,
+    #a78bfa 0deg,
+    #c4b5fd 90deg,
+    #ddd6fe 180deg,
+    #c4b5fd 270deg,
+    #a78bfa 360deg
+  );
+}
+
+.card-subtle:hover .corner-peel {
+  transform: translate(-6px, 6px) rotateZ(-8deg);
+}
+
+.card-subtle:hover .corner-peel::after {
+  opacity: 0.6;
+  transform: translate(-4px, 6px) scale(1.08);
+}
+
+/* Dramatic Variant - Bold peel */
+.card-dramatic .corner-peel {
+  background: conic-gradient(
+    from 0deg at 100% 0%,
+    #fb923c 0deg,
+    #fdba74 90deg,
+    #fed7aa 180deg,
+    #fdba74 270deg,
+    #fb923c 360deg
+  );
+}
+
+.card-dramatic:hover .corner-peel {
+  transform: translate(-16px, 16px) rotateZ(-18deg);
+  clip-path: polygon(100% 0%, 30% 15%, 5% 70%, 100% 100%);
+}
+
+.card-dramatic:hover .corner-peel::after {
+  opacity: 1;
+  transform: translate(-12px, 18px) scale(1.3);
+  background: radial-gradient(
+    ellipse at 0% 100%,
+    rgba(0, 0, 0, 0.85) 0%,
+    rgba(0, 0, 0, 0.5) 30%,
+    transparent 60%
+  );
+}
+
+/* Glowing Variant - Backlit effect */
+.card-glow::before {
+  background: radial-gradient(
+    circle at 100% 0%,
+    rgba(96, 165, 250, 0.4) 0%,
+    rgba(59, 130, 246, 0.25) 30%,
+    transparent 60%
+  );
+}
+
+.card-glow .corner-peel {
+  background: conic-gradient(
+    from 0deg at 100% 0%,
+    #60a5fa 0deg,
+    #93c5fd 90deg,
+    #dbeafe 180deg,
+    #93c5fd 270deg,
+    #60a5fa 360deg
+  );
+}
+
+.card-glow:hover .corner-peel {
+  transform: translate(-10px, 10px) rotateZ(-12deg);
+  filter: drop-shadow(0 0 8px rgba(96, 165, 250, 0.6));
+}
+
+.card-glow:hover .corner-peel::after {
+  opacity: 0.8;
+  transform: translate(-8px, 12px) scale(1.15);
+  background: radial-gradient(
+    ellipse at 0% 100%,
+    rgba(59, 130, 246, 0.5) 0%,
+    rgba(59, 130, 246, 0.2) 30%,
+    transparent 60%
+  );
+}
+
+/* Accessibility - Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .card::before,
+  .corner-peel,
+  .corner-peel::after {
+    transition: none;
+  }
+
+  .card:hover .corner-peel {
+    transform: none;
+    clip-path: polygon(100% 0%, 0% 0%, 0% 0%, 100% 100%);
+  }
+
+  .card:hover .corner-peel::after {
+    transform: none;
+    opacity: 0;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .peel-demo-wrapper {
+    min-height: 400px;
+    padding: 1rem;
+  }
+
+  .card {
+    width: 100%;
+    height: 100%;
+    padding: 24px;
+  }
+
+  .card-heading {
+    font-size: 24px;
+  }
+
+  .card-description {
+    font-size: 14px;
+  }
+
+  .corner-peel {
+    width: 70px;
+    height: 70px;
+  }
+
+  .variants-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .variant-box {
+    height: 240px;
+  }
+}
+
+@media (max-width: 480px) {
+  .card {
+    padding: 20px;
+  }
+
+  .card-heading {
+    font-size: 22px;
+  }
+
+  .card-description {
+    font-size: 13px;
+  }
+
+  .corner-peel {
+    width: 60px;
+    height: 60px;
+  }
+
+  .variant-box {
+    height: 220px;
+  }
+}
