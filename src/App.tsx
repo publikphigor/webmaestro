@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import LandingPage from "./LandingPage";
 import AppLayout from "./components/AppLayout";
 import LiquidButton from "./LiquidButton";
+import GradientText from "./GradientText";
 import { apps } from "./apps.config";
 
 const App = () => {
@@ -17,6 +18,15 @@ const App = () => {
           element={
             <AppLayout apps={apps}>
               <LiquidButton />
+            </AppLayout>
+          }
+        />
+
+        <Route
+          path="/css-gradient-text-warp"
+          element={
+            <AppLayout apps={apps}>
+              <GradientText />
             </AppLayout>
           }
         />

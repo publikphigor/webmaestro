@@ -15,4 +15,11 @@ export const apps: App[] = [
       "Liquid/gel effects using clip-path, filter: blur(), and moving pseudo-elements with gooey SVG filter and fluid ripple effects",
     tags: ["css", "animation", "blend-mode"],
   },
+  {
+    name: "Gradient Text That Warps to Cursor",
+    path: "/css-gradient-text-warp",
+    description:
+      "3D-looking text that bends depending on pointer location using perspective transforms and dynamic gradient positioning",
+    tags: ["css", "javascript", "3d", "gradient"],
+  },
 ];

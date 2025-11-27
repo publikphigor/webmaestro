@@ -1,0 +1,143 @@
+/* Gradient Text Specific Styles */
+
+.gradient-text-wrapper {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  transition: transform 0.3s ease-out;
+  transform-style: preserve-3d;
+  user-select: none;
+}
+
+.gradient-text {
+  font-size: 6rem;
+  font-weight: 900;
+  letter-spacing: -0.05em;
+  margin: 0;
+  background: linear-gradient(
+    135deg,
+    #d4fc79 0%,
+    #96e6a1 25%,
+    #00d4ff 50%,
+    #7b68ee 75%,
+    #ff6b9d 100%
+  );
+  background-size: 400% 400%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-position: var(--mouse-x, 50%) var(--mouse-y, 50%);
+  transition: background-position 0.3s ease-out;
+  text-shadow: 0 10px 30px rgba(212, 252, 121, 0.3);
+  animation: gradientShift 8s ease infinite;
+}
+
+@keyframes gradientShift {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* Interactive wrapper for variants */
+.gradient-text-wrapper.interactive {
+  transition: transform 0.2s ease-out;
+}
+
+.gradient-text-wrapper.interactive:hover {
+  transform: scale(1.05);
+}
+
+/* Variant Color Schemes */
+.gradient-text.variant-purple {
+  background: linear-gradient(
+    135deg,
+    #a78bfa 0%,
+    #c084fc 25%,
+    #e879f9 50%,
+    #f0abfc 75%,
+    #fae8ff 100%
+  );
+  text-shadow: 0 10px 30px rgba(167, 139, 250, 0.3);
+}
+
+.gradient-text.variant-sunset {
+  background: linear-gradient(
+    135deg,
+    #fb923c 0%,
+    #fb7185 25%,
+    #f43f5e 50%,
+    #e11d48 75%,
+    #be123c 100%
+  );
+  text-shadow: 0 10px 30px rgba(251, 146, 60, 0.3);
+}
+
+.gradient-text.variant-ocean {
+  background: linear-gradient(
+    135deg,
+    #06b6d4 0%,
+    #0ea5e9 25%,
+    #3b82f6 50%,
+    #6366f1 75%,
+    #8b5cf6 100%
+  );
+  text-shadow: 0 10px 30px rgba(6, 182, 212, 0.3);
+}
+
+/* Text Grid */
+.text-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 3rem;
+  justify-items: center;
+  align-items: center;
+}
+
+.text-grid .gradient-text {
+  font-size: 3rem;
+}
+
+/* Add glow effect on hover */
+.gradient-text-wrapper:hover .gradient-text {
+  animation: gradientShift 2s ease infinite, textGlow 2s ease-in-out infinite;
+}
+
+@keyframes textGlow {
+  0%,
+  100% {
+    filter: brightness(1);
+  }
+  50% {
+    filter: brightness(1.3);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .gradient-text {
+    font-size: 4rem;
+  }
+
+  .text-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .text-grid .gradient-text {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .gradient-text {
+    font-size: 3rem;
+  }
+
+  .text-grid .gradient-text {
+    font-size: 2rem;
+  }
+}
