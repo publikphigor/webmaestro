@@ -32,7 +32,19 @@ bun install
 **App Structure**: This project contains multiple mini applications, each demonstrating different CSS/JavaScript techniques:
 - **Landing Page**: Uses Tailwind CSS for styling
 - **Mini Apps**: Each app lives in its own route with its own dedicated CSS file
-- **Routing**: Each mini app is accessible via a separate route (e.g., `/app1`, `/app2`, etc.)
+- **Routing**: Uses React Router with a shared layout component (AppLayout) that includes header, footer, and "Related Apps" section
+- **Apps Configuration**: All apps are defined in `src/apps.config.ts` for central management
+
+**Route Naming Convention**:
+- Routes should use short, descriptive, kebab-case paths that clearly indicate the technique demonstrated
+- Format: `/{technique-type}-{descriptive-name}`
+- Examples:
+  - `/css-liquid-button` - for a CSS liquid button effect
+  - `/js-particle-effect` - for a JavaScript particle effect
+  - `/css-3d-card-flip` - for a 3D card flip using CSS
+  - `/js-smooth-scroll` - for a smooth scroll implementation
+- Avoid generic names like `/app1`, `/demo`, or `/example`
+- Keep paths concise but meaningful (2-4 words maximum)
 
 **Styling Convention**:
 - Landing page and shared layouts: Tailwind CSS
@@ -71,11 +83,24 @@ JSX is configured as `react-jsx` (new JSX transform, no need to import React in 
 
 When adding a new mini app to the showcase:
 
-1. **Create a new component** in `src/` (e.g., `MiniApp1.tsx`)
-2. **Create a dedicated CSS file** for the app (e.g., `MiniApp1.css`)
-3. **Import the CSS only in that component**: `import './MiniApp1.css'`
-4. **Add a route** for the app in the routing configuration
-5. **Add a link** from the landing page to showcase the new app
+1. **Add the app to `src/apps.config.ts`** with:
+   - `name`: Display name of the app
+   - `path`: Route following the naming convention (e.g., `/css-liquid-button`)
+   - `description`: Brief description of the technique demonstrated
+   - `tags`: Array of relevant tags (e.g., `["css", "animation"]`)
+
+2. **Create a new component** in `src/` (e.g., `LiquidButton.tsx`)
+
+3. **Create a dedicated CSS file** for the app (e.g., `LiquidButton.css`)
+
+4. **Import the CSS only in that component**: `import './LiquidButton.css'`
+
+5. **Update App.tsx** to import and route to your new component
+
+The app will automatically:
+- Appear on the landing page
+- Get wrapped with the AppLayout (header, footer, related apps)
+- Be accessible via its defined route
 
 Each mini app should be self-contained with its own styles to demonstrate specific CSS/JS techniques without interference from Tailwind or other app styles.
 
