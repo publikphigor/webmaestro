@@ -124,9 +124,7 @@ const LandingPage = () => {
       <section id="apps" className="py-20">
         <div className="max-w-6xl mx-auto px-6">
           <div className="mb-12">
-            <h2 className="text-2xl font-bold mb-2 text-white">
-              Mini Applications
-            </h2>
+            <h2 className="text-2xl font-bold mb-2 text-white">Apps</h2>
             <p className="text-sm text-sub-text">
               Each app demonstrates a unique technique with clean, readable code
             </p>
