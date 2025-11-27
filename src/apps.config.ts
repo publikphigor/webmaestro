@@ -22,4 +22,11 @@ export const apps: App[] = [
       "3D-looking text that bends depending on pointer location using perspective transforms and dynamic gradient positioning",
     tags: ["css", "javascript", "3d", "gradient"],
   },
+  {
+    name: "CSS Only 3D Rotating Cube",
+    path: "/css-3d-rotating-cube",
+    description:
+      "Perspective-perfect 3D cube with six uniquely styled faces that continuously rotates. Hover to pause and inspect each face in detail",
+    tags: ["css", "3d", "animation", "perspective"],
+  },
 ];

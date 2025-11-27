@@ -3,6 +3,7 @@ import LandingPage from "./LandingPage";
 import AppLayout from "./components/AppLayout";
 import LiquidButton from "./LiquidButton";
 import GradientText from "./GradientText";
+import CSS3DRotatingCube from "./CSS3DRotatingCube";
 import { apps } from "./apps.config";
 
 const App = () => {
@@ -27,6 +28,15 @@ const App = () => {
           element={
             <AppLayout apps={apps}>
               <GradientText />
+            </AppLayout>
+          }
+        />
+
+        <Route
+          path="/css-3d-rotating-cube"
+          element={
+            <AppLayout apps={apps}>
+              <CSS3DRotatingCube />
             </AppLayout>
           }
         />
